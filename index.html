@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Examples of the Mobify.js carousel in action</title>
+        <title>Examples of the Mobify.js Maginifik in action</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <link rel="stylesheet" href="src/carousel.css">
-        <link rel="stylesheet" href="src/carousel-style.css">
         <style>
-            /* styling for this page */
-            .m-carousel {
-                padding-bottom: 30px;
+            .corner.m-close { 
+                color: white; 
+                background: black; 
+                position: absolute; 
+                right: 0; 
+                top: 0;
+            	font-weight: bold; 
+                font-size: 18px; 
+                padding: 10px;
             }
-
-            .m-card-light {
-                width: 200px;
-                margin: 30px 10px 0 10px;
+            .magnifik-notice {
+                position: absolute; 
+                left: 50%; 
+                top: 50%;
+                width: 300px; 
+                height: 36px; 
+                margin-left: -160px; 
+                margin-top: -28px; 
+                padding: 10px;
+                vertical-align: middle; 
+                text-align: center; 
+                font-weight: bold; 
+                font-size: 16px; 
+                line-height: 18px;
+                background: rgba(0,0,192,0.5); 
+                color: white; 
+                opacity: 1;
             }
-            .m-card-dark h3 {
-                margin-top: 0;
-            }
-
-            .m-item .m-card-dark img, .m-item .m-card-light img {
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-            }
-
-            #m-carousel-example-5 .m-caption {
-                color: #ccc;
-            }
-
-            body {
-                font-family: arial, sans-serif;
-                line-height: 1.25em;
+            .magnifik-notice-fade {
+                -webkit-transition: opacity 4s ease-in; 
+                -o-transition: opacity 4s ease-in; 
+                -moz-transition: opacity 4s ease-in; 
+                -ms-transition: opacity 4s ease-in; 
+                transition: opacity 4s ease-in;
+                opacity: 0;
+             }
+            a img { width: 100%; }
+            .z4-wrap { 
+                height: 300px; 
+                border: 3px solid black; 
             }
         </style>
-    </head>
-    <body>
-
         <!-- <script src="http://zeptojs.com/zepto.js"></script> -->
         <script src="http://code.jquery.com/jquery-1.10.1.js"></script>
         <script src="src/magnifik.js"></script>
-        <script>$('.m-carousel').carousel();</script>
+
+    </head>
+    <body>
+        <div class="magnifik-example">
+            <h2>Messaging upon opening</h2>
+            <a class="z3" href="http://www.fillmurray.com/g/600/900">
+                <img src="http://www.fillmurray.com/g/600/900">
+            </a>
+            <script>
+            $('a.z3').magnifik({
+                stageHTML: function() {
+                  return Mobify.UI.Zoomable.defaults.stageHTML.call(this)
+                      + '<div class="magnifik-notice m-close">Tap anywhere to close. On touchscreen device, drag to navigate</div>';
+                }
+            }).bind('afterOpen.magnifik', function() {
+              $('.magnifik-notice').addClass('magnifik-notice-fade');
+            }).bind('beforeClose.magnifik', function() {
+              $('.magnifik-notice').removeClass('magnifik-notice-fade');
+            });
+            </script>
+            <h3>Code for this example:</h3>
+        </div>
+        
+        <div class="magnifik-example">
+            <h2>Limiting magnifik to a container</h2>
+            <a class="z4 m-magnifik-contained" href="http://www.fillmurray.com/g/600/600">
+                <img src="http://www.fillmurray.com/g/600/600">
+            </a>
+            <div class="z4-wrap"></div>
+            <script>
+                $('a.m-magnifik-contained').magnifik({
+                    stage: $('.z4-wrap')
+                });
+            </script>
+            
+            <h3>Code for this example:</h3>
+        </div>
+        
+
+
     </body>
 </html>
