@@ -10,7 +10,7 @@
                 position: absolute; 
                 right: 0; 
                 top: 0;
-            	font-weight: bold; 
+                font-weight: bold; 
                 font-size: 18px; 
                 padding: 10px;
             }
@@ -46,48 +46,20 @@
                 border: 3px solid black; 
             }
         </style>
-        <!-- <script src="http://zeptojs.com/zepto.js"></script> -->
-        <script src="http://code.jquery.com/jquery-1.10.1.js"></script>
+        <!-- <script src="//zeptojs.com/zepto.js"></script> -->
+        <script src="//code.jquery.com/jquery-1.10.1.js"></script>
         <script src="src/magnifik.js"></script>
 
     </head>
     <body>
-        <div class="magnifik-example">
-            <h2>Messaging upon opening</h2>
-            <a class="z3" href="http://www.fillmurray.com/g/600/900">
-                <img src="http://www.fillmurray.com/g/600/900">
-            </a>
-            <script>
-            $('a.z3').magnifik({
-                stageHTML: function() {
-                  return Mobify.UI.Zoomable.defaults.stageHTML.call(this)
-                      + '<div class="magnifik-notice m-close">Tap anywhere to close. On touchscreen device, drag to navigate</div>';
-                }
-            }).bind('afterOpen.magnifik', function() {
-              $('.magnifik-notice').addClass('magnifik-notice-fade');
-            }).bind('beforeClose.magnifik', function() {
-              $('.magnifik-notice').removeClass('magnifik-notice-fade');
-            });
-            </script>
-            <h3>Code for this example:</h3>
-        </div>
-        
-        <div class="magnifik-example">
-            <h2>Limiting magnifik to a container</h2>
-            <a class="z4 m-magnifik-contained" href="http://www.fillmurray.com/g/600/600">
-                <img src="http://www.fillmurray.com/g/600/600">
-            </a>
-            <div class="z4-wrap"></div>
-            <script>
-                $('a.m-magnifik-contained').magnifik({
-                    stage: $('.z4-wrap')
-                });
-            </script>
-            
-            <h3>Code for this example:</h3>
-        </div>
-        
 
+        <div class="magnifik-example basic">
+            <h2>Basic magnifik</h2>
+            <a class="z1" href="//www.fillmurray.com/g/601/901">
+                <img src="//www.fillmurray.com/g/601/901">
+            </a>
+            <script>$('a.z1').magnifik();</script>
+        </div>
 
     </body>
 </html>
