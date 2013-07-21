@@ -12,7 +12,7 @@ Mobify.UI = Mobify.UI || { classPrefix: 'm-' };
 
 var $ = window.Mobify ? Mobify.$ : window.$;
 
-Mobify.UI.Zoomable = (function() {
+Mobify.UI.Magnifik = (function() {
     var defaults = {
             // Element inside which zoomed in content should be rendered. 
             // Defaults to the document body.
@@ -52,7 +52,7 @@ Mobify.UI.Zoomable = (function() {
               , maxHeight: 'none'        
           }
             // Generator for HTML of zoomed in view. If overriding, you can call 
-            // the old function via Mobify.UI.Zoomable.defaults.stageHTML.call(this)
+            // the old function via Mobify.UI.Magnifik.defaults.stageHTML.call(this)
           , stageHTML: function() {
                 return '<div class="' + this._getClass('canvas') + '"><img class="'
                     + this._getClass('thumb') + '"><img class="'
@@ -60,7 +60,7 @@ Mobify.UI.Zoomable = (function() {
           }
             // Generator for global CSS (ignored if magnifik content injected into 
             // non-body element). If overriding, you can call old function via 
-            // Mobify.UI.Zoomable.defaults.globalStyle.call(this)
+            // Mobify.UI.Magnifik.defaults.globalStyle.call(this)
           , globalStyle: function() {
                 var zooming = '.' + this._getClass('zooming');
                 return zooming + ' { overflow: hidden; }'
@@ -72,8 +72,8 @@ Mobify.UI.Zoomable = (function() {
         // stage: where the thing is inserted
         // element: the magnifik
 
-      , Zoomable = function(element, options) {
-            this.options = $.extend({}, Zoomable.defaults, options);
+      , Magnifik = function(element, options) {
+            this.options = $.extend({}, Magnifik.defaults, options);
             this.options.classNames = $.extend(defaults.classNames, this.options.classNames);
             this.options.imageStyle.width = 100 * this.options.ratio + '%';
 
@@ -87,9 +87,9 @@ Mobify.UI.Zoomable = (function() {
             this.bind();
         };
 
-    Zoomable.defaults = defaults;
+    Magnifik.defaults = defaults;
 
-    Zoomable.prototype.unbind = function() {   
+    Magnifik.prototype.unbind = function() {   
         return this.bind(true);
     };
 
@@ -97,7 +97,7 @@ Mobify.UI.Zoomable = (function() {
      * Construct the elements for the module.
      *
      */
-    Zoomable.prototype.makeElems = function() {
+    Magnifik.prototype.makeElems = function() {
         this.$stage = this.options.stage;
         this.$canvas = $(this.options.stageHTML.call(this)).addClass(this._getClass('control'));
         this.$canvas.first().css(this.options.canvasStyle);
@@ -135,7 +135,7 @@ Mobify.UI.Zoomable = (function() {
         this.bindClose('bind');
     }
 
-    Zoomable.prototype.close = function(ev) {
+    Magnifik.prototype.close = function(ev) {
         if (!this.isOpen) return;
         this.isOpen = false;
 
@@ -151,7 +151,7 @@ Mobify.UI.Zoomable = (function() {
         this.$element.trigger('close.magnifik');
     };
 
-    Zoomable.prototype.open = function(event) {
+    Magnifik.prototype.open = function(event) {
         event.preventDefault();
         if (this.isOpen) return;
         this.isOpen = true;
@@ -215,11 +215,11 @@ Mobify.UI.Zoomable = (function() {
         })
     };
 
-    Zoomable.prototype.bindClose = function(op) {
+    Magnifik.prototype.bindClose = function(op) {
         if (this.$close) this.$close[op](this.options.activationEvent, this.boundClose);
     }
 
-    Zoomable.prototype.bind = function(undo) {
+    Magnifik.prototype.bind = function(undo) {
         var self = this;
         var op = undo ? 'unbind' : 'bind';
 
@@ -231,19 +231,19 @@ Mobify.UI.Zoomable = (function() {
         this.bindClose(op);
     };
 
-    Zoomable.prototype._getClass = function(id) {
+    Magnifik.prototype._getClass = function(id) {
         var classPrefix = this.options.classPrefix;
         if (typeof classPrefix === "undefined" ) classPrefix = Mobify.UI.classPrefix;
         
         return classPrefix + this.options.classNames[id];
     };    
 
-    return Zoomable;
+    return Magnifik;
 })();
 
 
 $.fn.magnifik = function (action, options) {
-    var name = 'Mobify.UI.Zoomable'
+    var name = 'Mobify.UI.Magnifik'
       , initOptions = $.extend({}, $.fn.magnifik.defaults);
 
     // Handle different calling conventions
@@ -258,7 +258,7 @@ $.fn.magnifik = function (action, options) {
           , magnifik = $this.data(name)
         
         if (!magnifik) {
-            magnifik = new Mobify.UI.Zoomable(this, initOptions);
+            magnifik = new Mobify.UI.Magnifik(this, initOptions);
         }
 
         if (action) {

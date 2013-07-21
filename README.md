@@ -70,7 +70,7 @@ Below are the options available in the configuration object:
 | stage         | <body> element | DOM node that will receive generated magnifik markup. |
 | classNames    | Object, see below | Contains class names for various parts of magnifik. Classes can be overriden individually. |
 | ratio         | `2`            | Zoomed in image is magified to be `ratio` times bigger than the stage. |
-| seekImage     | `true`         | If thumbnail image is not found in the anchor element used as context, Zoomable will go up in DOM tree until it finds nearby image. Set to `false` to restrict image lookups to stay within context |
+| seekImage     | `true`         | If thumbnail image is not found in the anchor element used as context, Magnifik will go up in DOM tree until it finds nearby image. Set to `false` to restrict image lookups to stay within context |
 | clickCloses   | `true`         | Specifies if clicking or tapping in place on the magnified image should close magnified view |
 | activationEvent | `"click"` | Override to use alternate event for all magnifik control interactions |
 | canvasStyle  | Object, see below | Extra CSS properties to be applied to canvas. You can delete default properties by setting their value to `undefined`. | 
@@ -125,7 +125,7 @@ The magnifik emits the following events:
 
 ## Limitations
 
-Zoomable relies on click event for activation and deactivation. This results 
+Magnifik relies on click event for activation and deactivation. This results 
 in about ~300ms delay in iOS, as Mobile Safari waits to ensure that event 
 in question is a single tap rather than built-in page zooming double tap. 
 We do not bundle a quick tap implementation with magnifik, but you can 
