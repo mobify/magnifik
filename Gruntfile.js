@@ -70,8 +70,18 @@ module.exports = function(grunt) {
                     rel: "build"
                 }
             ]
+        },
+        release: {
+            options: {
+                folder: '.',
+                npm: false,
+                github: {
+                    repo: 'mobify/scooch',
+                    usernameVar: 'GITHUB_USERNAME',
+                    passwordVar: 'GITHUB_TOKEN'
+                }
+            }
         }
-        // TODO: upload over a LATEST version and/or create a redirect?
     });
 
     // Load the task plugins
@@ -81,10 +91,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-s3');
     grunt.loadNpmTasks('grunt-clean');
+    grunt.loadNpmTasks('grunt-release');
 
     // Default task(s).
     grunt.registerTask('build', ['uglify', 'zip']);
-    grunt.registerTask('release', ['build', 'shell:tagRelease', 's3']);
+    grunt.registerTask('publish', ['build', 'release', 's3']);
     grunt.registerTask('default', 'build');
     grunt.registerTask('serve', ['connect:server:keepalive']);
 
