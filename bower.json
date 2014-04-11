@@ -1,0 +1,23 @@
+{
+  "name": "magnifik",
+  "version": "0.1.1",
+  "homepage": "https://github.com/mobify/magnifik",
+  "authors": [
+    "Mobify <jobs@mobify.com>"
+  ],
+  "description": "An image zooming module for mobile",
+  "main": "build/magnifik.min.js",
+  "keywords": [
+    "mobile",
+    "responsive",
+    "zoom",
+    "tapzoom",
+    "mobify"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
