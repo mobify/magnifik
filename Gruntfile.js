@@ -75,6 +75,7 @@ module.exports = function(grunt) {
             options: {
                 folder: '.',
                 npm: false,
+                file: 'bower.json',
                 github: {
                     repo: 'mobify/scooch',
                     usernameVar: 'GITHUB_USERNAME',
