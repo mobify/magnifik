@@ -16,7 +16,6 @@ var $ = Adaptive.$ || Mobify.$;
 // $('...').magnifik({classPrefix: 'qb-'})
 Mobify.UI = Mobify.UI || { classPrefix: 'm-' };
 
-//var $ = window.Mobify ? Mobify.$ : window.$;
 
 Mobify.UI.Magnifik = (function() {
     var defaults = {
