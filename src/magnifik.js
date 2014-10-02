@@ -139,7 +139,7 @@ Mobify.UI.Magnifik = (function() {
         if (!this.isOpen) return;
         this.isOpen = false;
 
-        this.$element.trigger('closing.magnifik');
+        this.$element.trigger('magnifik:closing');
 
         this.$canvas.detach();
         this.$stage.removeClass(this._getClass('zooming'));
@@ -148,7 +148,7 @@ Mobify.UI.Magnifik = (function() {
             document.body.scrollTop = this.oldScrollTop;
         }
 
-        this.$element.trigger('close.magnifik');
+        this.$element.trigger('magnifik:close');
     };
 
     Magnifik.prototype.open = function(event) {
@@ -156,7 +156,7 @@ Mobify.UI.Magnifik = (function() {
         if (this.isOpen) return;
         this.isOpen = true;
 
-        this.$element.trigger('opening.magnifik');
+        this.$element.trigger('magnifik:opening');
 
         if (!this.$stage) this.makeElems();
 
@@ -211,7 +211,7 @@ Mobify.UI.Magnifik = (function() {
             thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
                 bigHeight * topRatio - smallHeight / 2)));
 
-            thus.$element.trigger('open.magnifik');                 
+            thus.$element.trigger('magnifik:open');                 
         })
     };
 
