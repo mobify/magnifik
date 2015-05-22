@@ -116,10 +116,10 @@ The magnifik emits the following events:
 
 | Name          | Description                               |   
 |---------------|-------------------------------------------|
-| beforeOpen    | Fired before magnifik starts opening      |
-| afterOpen     | Fired when magnifik is fully open         |
-| beforeClose   | Fired before magnifik starts closing      |
-| afterClose    | Fired after magnifik finishes closing     |
+| opening       | Fired before magnifik starts opening      |
+| open          | Fired when magnifik is fully open         |
+| closing       | Fired before magnifik starts closing      |
+| close         | Fired after magnifik finishes closing     |
 
 <!--
 
