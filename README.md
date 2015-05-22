@@ -114,12 +114,12 @@ These are the default styles applied to magnified image(s) and their container.
 
 The magnifik emits the following events:
 
-| Name          | Description                               |   
-|---------------|-------------------------------------------|
-| opening       | Fired before magnifik starts opening      |
-| open          | Fired when magnifik is fully open         |
-| closing       | Fired before magnifik starts closing      |
-| close         | Fired after magnifik finishes closing     |
+| Name               | Description                               |   
+|--------------------|-------------------------------------------|
+| magnifik:opening   | Fired before magnifik starts opening      |
+| magnifik:open      | Fired when magnifik is fully open         |
+| magnifik:closing   | Fired before magnifik starts closing      |
+| magnifik:close     | Fired after magnifik finishes closing     |
 
 <!--
 
