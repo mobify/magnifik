@@ -1,6 +1,6 @@
 (function() {
 
-var Adaptive = window.Adaptive;
+var Adaptive = window.Adaptive || {};
 var Mobify = window.Mobify = window.Mobify || {};
 
 if (Adaptive.$ === undefined) {
