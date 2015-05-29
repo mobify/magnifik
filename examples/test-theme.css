@@ -1,0 +1,41 @@
+.corner.m-close { 
+    color: white; 
+    background: black; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    font-weight: bold; 
+    font-size: 18px; 
+    padding: 10px;
+}
+.magnifik-notice {
+    position: absolute; 
+    left: 50%; 
+    top: 50%;
+    width: 300px; 
+    height: 36px; 
+    margin-left: -160px; 
+    margin-top: -28px; 
+    padding: 10px;
+    vertical-align: middle; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 16px; 
+    line-height: 18px;
+    background: rgba(0,0,192,0.5); 
+    color: white; 
+    opacity: 1;
+}
+.magnifik-notice-fade {
+    -webkit-transition: opacity 4s ease-in; 
+    -o-transition: opacity 4s ease-in; 
+    -moz-transition: opacity 4s ease-in; 
+    -ms-transition: opacity 4s ease-in; 
+    transition: opacity 4s ease-in;
+    opacity: 0;
+ }
+a img { width: 100%; }
+.z4-wrap { 
+    height: 300px; 
+    border: 3px solid black; 
+}
