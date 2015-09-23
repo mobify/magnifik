@@ -10,8 +10,8 @@ if (Adaptive.$ === undefined) {
 var $ = Adaptive.$ || Mobify.$;
 
 // This prefix is inserted before all class references for conflict avoidance.
-// For example, default close class will be m-close. You can override this 
-// property globally by setting it on Mobify.UI object. You can also override 
+// For example, default close class will be m-close. You can override this
+// property globally by setting it on Mobify.UI object. You can also override
 // it per-invocation by passing an alternate value inside options object:
 // $('...').magnifik({classPrefix: 'qb-'})
 Mobify.UI = Mobify.UI || { classPrefix: 'm-' };
@@ -19,7 +19,7 @@ Mobify.UI = Mobify.UI || { classPrefix: 'm-' };
 
 Mobify.UI.Magnifik = (function() {
     var defaults = {
-            // Element inside which zoomed in content should be rendered. 
+            // Element inside which zoomed in content should be rendered.
             // Defaults to the document body.
             stage: undefined
             // Look for (or generate) elements with these class names.
@@ -33,8 +33,8 @@ Mobify.UI.Magnifik = (function() {
           }
             // Viewport width is multiplied by this value to determine zoomed in width.
           , ratio: 2.0
-            // Ascend DOM level from trigger element to find nearest image to use 
-            // as thumbnail. If set to false, no ascent would take place, and only 
+            // Ascend DOM level from trigger element to find nearest image to use
+            // as thumbnail. If set to false, no ascent would take place, and only
             // images within initial context will be considered.
           , seekImage: true
             // Whether clicking anywhere on zoomed in image will stop zooming.
@@ -47,6 +47,7 @@ Mobify.UI.Magnifik = (function() {
               , width: '100%'
               , height: '100%'
               , overflow: 'auto'
+              , '-webkit-overflow-scrolling': 'touch'
           }
             // Default style applied to images within canvas. Overriding replaces the whole object.
           , imageStyle: {
@@ -54,17 +55,17 @@ Mobify.UI.Magnifik = (function() {
               , top: '0'
               , left: '0'
               , maxWidth: 'none'
-              , maxHeight: 'none'        
+              , maxHeight: 'none'
           }
-            // Generator for HTML of zoomed in view. If overriding, you can call 
+            // Generator for HTML of zoomed in view. If overriding, you can call
             // the old function via Mobify.UI.Magnifik.defaults.stageHTML.call(this)
           , stageHTML: function() {
                 return '<div class="' + this._getClass('canvas') + '"><img class="'
                     + this._getClass('thumb') + '"><img class="'
                     + this._getClass('full') + '"></div>';
           }
-            // Generator for global CSS (ignored if magnifik content injected into 
-            // non-body element). If overriding, you can call old function via 
+            // Generator for global CSS (ignored if magnifik content injected into
+            // non-body element). If overriding, you can call old function via
             // Mobify.UI.Magnifik.defaults.globalStyle.call(this)
           , globalStyle: function() {
                 var zooming = '.' + this._getClass('zooming');
@@ -94,7 +95,7 @@ Mobify.UI.Magnifik = (function() {
 
     Magnifik.defaults = defaults;
 
-    Magnifik.prototype.unbind = function() {   
+    Magnifik.prototype.unbind = function() {
         return this.bind(true);
     };
 
@@ -116,7 +117,7 @@ Mobify.UI.Magnifik = (function() {
 
         if (this.options.global) {
             if (!$('style[data-magnifik="' + this._getClass('zooming') + '"]').length) {
-                
+
                 var style = document.createElement('style')
                   , css = this.options.globalStyle.call(this);
 
@@ -182,7 +183,7 @@ Mobify.UI.Magnifik = (function() {
                 $parent = $($parents[i]).find('img');
                 if ($parent.length) {
                     $img = $parent;
-                    break;  
+                    break;
                 }
             }
         } else {
@@ -200,7 +201,7 @@ Mobify.UI.Magnifik = (function() {
         }
 
         this.$stage.append(this.$canvas);
-        this.$stage.addClass(this._getClass('zooming'));            
+        this.$stage.addClass(this._getClass('zooming'));
 
         var imgAspect = $img.prop('naturalHeight') / $img.prop('naturalWidth')
           , thumbWidth = this.$thumb.prop('offsetWidth')
@@ -237,9 +238,9 @@ Mobify.UI.Magnifik = (function() {
     Magnifik.prototype._getClass = function(id) {
         var classPrefix = this.options.classPrefix;
         if (typeof classPrefix === "undefined" ) classPrefix = Mobify.UI.classPrefix;
-        
+
         return classPrefix + this.options.classNames[id];
-    };    
+    };
 
     return Magnifik;
 })();
@@ -254,12 +255,12 @@ $.fn.magnifik = function (action, options) {
         initOptions = action;
         options = null;
         action = null;
-    } 
+    }
 
     this.each(function () {
         var $this = $(this)
           , magnifik = $this.data(name)
-        
+
         if (!magnifik) {
             magnifik = new Mobify.UI.Magnifik(this, initOptions);
         }
@@ -272,11 +273,11 @@ $.fn.magnifik = function (action, options) {
                 $this.$canvas.remove();
             }
         }
-        
+
         $this.data(name, magnifik);
     });
 
-    return this;    
+    return this;
 };
 
 })();
