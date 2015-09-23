@@ -210,14 +210,12 @@ Mobify.UI.Magnifik = (function() {
           , bigHeight = thumbWidth * imgAspect
           , thus = this;
 
-        this.$thumb.one('load', function() {
-            thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
-                bigWidth * leftRatio - smallWidth / 2)));
-            thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
-                bigHeight * topRatio - smallHeight / 2)));
+        thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
+            bigWidth * leftRatio - smallWidth / 2)));
+        thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
+            bigHeight * topRatio - smallHeight / 2)));
 
-            thus.$element.trigger('magnifik:open');                 
-        })
+        thus.$element.trigger('magnifik:open');
     };
 
     Magnifik.prototype.bindClose = function(op) {
