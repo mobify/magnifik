@@ -1,7 +1,13 @@
 (function() {
 
-var Mobify = window.Mobify = window.Mobify || {}
-  , $ = Mobify.$ = Mobify.$ || window.$ || window.Zepto || window.jQuery;
+var Adaptive = window.Adaptive || {};
+var Mobify = window.Mobify = window.Mobify || {};
+
+if (Adaptive.$ === undefined) {
+  Mobify.$ = Mobify.$ || window.$ || window.Zepto || window.jQuery;
+}
+
+var $ = Adaptive.$ || Mobify.$;
 
 // This prefix is inserted before all class references for conflict avoidance.
 // For example, default close class will be m-close. You can override this 
@@ -10,7 +16,6 @@ var Mobify = window.Mobify = window.Mobify || {}
 // $('...').magnifik({classPrefix: 'qb-'})
 Mobify.UI = Mobify.UI || { classPrefix: 'm-' };
 
-var $ = window.Mobify ? Mobify.$ : window.$;
 
 Mobify.UI.Magnifik = (function() {
     var defaults = {
