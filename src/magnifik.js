@@ -47,7 +47,7 @@ Mobify.UI.Magnifik = (function() {
               , width: '100%'
               , height: '100%'
               , overflow: 'auto'
-              , '-webkit-overflow-scroll': 'touch'
+              , '-webkit-overflow-scrolling': 'touch'
           }
             // Default style applied to images within canvas. Overriding replaces the whole object.
           , imageStyle: {
