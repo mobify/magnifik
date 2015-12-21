@@ -75,8 +75,8 @@ Mobify.UI.Magnifik = (function() {
             }
             // Default canvas scroll position. Overriding replaces the whole object.
             , canvasScrollPosition: {
-                horizontal: 'center', // left | center | right
-                vertical: 'center', // top | center | bottom
+                horizontal: 'default', // default | left | right
+                vertical: 'default', // default | top | bottom
             }
         }
 
@@ -219,21 +219,21 @@ Mobify.UI.Magnifik = (function() {
         // Set the desired "scrollLeft" position
         if (this.options.canvasScrollPosition.horizontal === 'left') {
             thus.$canvas.prop('scrollLeft', 0);
-        } else if (this.options.canvasScrollPosition.horizontal === 'center') {
-            thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
-                bigWidth * leftRatio - smallWidth / 2)));
         } else if (this.options.canvasScrollPosition.horizontal === 'right') {
             thus.$canvas.prop('scrollLeft', bigWidth);
+        } else if (this.options.canvasScrollPosition.horizontal === 'default') {
+            thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
+                bigWidth * leftRatio - smallWidth / 2)));
         }
 
         // Set the desired "scrollTop" position
         if (this.options.canvasScrollPosition.vertical === 'top') {
             thus.$canvas.prop('scrollTop', 0);
-        } else if (this.options.canvasScrollPosition.vertical === 'center') {
-            thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
-                bigHeight * topRatio - smallHeight / 2)));
         } else if (this.options.canvasScrollPosition.vertical === 'bottom') {
             thus.$canvas.prop('scrollTop', bigHeight);
+        } else if (this.options.canvasScrollPosition.vertical === 'default') {
+            thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
+                bigHeight * topRatio - smallHeight / 2)));
         }
 
         thus.$element.trigger('magnifik:open');

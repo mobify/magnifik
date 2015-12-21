@@ -116,9 +116,11 @@ These are the default styles applied to magnified image(s) and their container.
 The `canvasScrollPosition` configuration object has the following structure:
 
     {
-        horizontal: 'center', // Possible values: left | center | right
-        vertical: 'center', // Possible values: top | center | bottom
+        horizontal: 'default', // Possible values: default | left | right
+        vertical: 'default', // Possible values: default | top | bottom
     }
+
+The `default` option zooms to where the user tapped on the thumbnail.
 
 ## Events
 
