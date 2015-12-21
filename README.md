@@ -73,10 +73,11 @@ Below are the options available in the configuration object:
 | seekImage     | `true`         | If thumbnail image is not found in the anchor element used as context, Magnifik will go up in DOM tree until it finds nearby image. Set to `false` to restrict image lookups to stay within context |
 | clickCloses   | `true`         | Specifies if clicking or tapping in place on the magnified image should close magnified view |
 | activationEvent | `"click"` | Override to use alternate event for all magnifik control interactions |
-| canvasStyle  | Object, see below | Extra CSS properties to be applied to canvas. You can delete default properties by setting their value to `undefined`. | 
+| canvasStyle  | Object, see below | Extra CSS properties to be applied to canvas. You can delete default properties by setting their value to `undefined`. |
 | imageStyle   | Object, see below | Extra CSS properties to be applied to low-res and high-res magnified image. You can delete default properties by setting their value to `undefined`. |
 | stageHTML | Function | Generates HTML of magnified state of magnifik module. See examples to see how to change it |
 | globalStyle | Function | Generates CSS for magnifik acting upon <body>. Typically should be left as-is. |
+| canvasScrollPosition | Object, see below | Defines the scroll position for the canvas when zoomed in. |
 
 ## Classes
 
@@ -94,7 +95,7 @@ Below are the options available in the configuration object:
 These are the default styles applied to magnified image(s) and their container.
 
 ### canvasStyle
-    { 
+    {
         position: 'absolute'
       , width: '100%'
       , height: '100%'
@@ -102,12 +103,21 @@ These are the default styles applied to magnified image(s) and their container.
     }
 
 ### imageStyle
-    { 
+    {
         position: 'absolute'
       , top: '0'
       , left: '0'
       , maxWidth: 'none'
       , maxHeight: 'none'        
+    }
+
+## Canvas scroll position
+
+The `canvasScrollPosition` configuration object has the following structure:
+
+    {
+        horizontal: 'center', // Possible values: left | center | right
+        vertical: 'center', // Possible values: top | center | bottom
     }
 
 ## Events
@@ -125,18 +135,18 @@ The magnifik emits the following events:
 
 ## Limitations
 
-Magnifik relies on click event for activation and deactivation. This results 
-in about ~300ms delay in iOS, as Mobile Safari waits to ensure that event 
-in question is a single tap rather than built-in page zooming double tap. 
-We do not bundle a quick tap implementation with magnifik, but you can 
-attach a tap event manually. Here is an example of custom binding that 
+Magnifik relies on click event for activation and deactivation. This results
+in about ~300ms delay in iOS, as Mobile Safari waits to ensure that event
+in question is a single tap rather than built-in page zooming double tap.
+We do not bundle a quick tap implementation with magnifik, but you can
+attach a tap event manually. Here is an example of custom binding that
 uses [jQuery tappable](https://github.com/aanand/jquery.tappable.js/blob/master/jquery.tappable.js):
 
     var el = $('a.magnifik').magnifik();
     el.tappable(function() {
         $(this).magnifik('show');
     });
-    
+
 Other quick touch implementations can be used in similar ways.
 
 -->

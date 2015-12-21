@@ -73,6 +73,11 @@ Mobify.UI.Magnifik = (function() {
                   + zooming + ' > * { display: none !important; }'
                   + zooming + ' > .' + this._getClass('control') + ' { display: block !important; }';
             }
+            // Default canvas scroll position. Overriding replaces the whole object.
+            , canvasScrollPosition: {
+                horizontal: 'center', // left | center | right
+                vertical: 'center', // top | center | bottom
+            }
         }
 
         // stage: where the thing is inserted
@@ -211,10 +216,25 @@ Mobify.UI.Magnifik = (function() {
           , bigHeight = thumbWidth * imgAspect
           , thus = this;
 
-        thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
-            bigWidth * leftRatio - smallWidth / 2)));
-        thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
-            bigHeight * topRatio - smallHeight / 2)));
+        // Set the desired "scrollLeft" position
+        if (this.options.canvasScrollPosition.horizontal === 'left') {
+            thus.$canvas.prop('scrollLeft', 0);
+        } else if (this.options.canvasScrollPosition.horizontal === 'center') {
+            thus.$canvas.prop('scrollLeft', Math.max(0, Math.min(bigWidth - smallWidth,
+                bigWidth * leftRatio - smallWidth / 2)));
+        } else if (this.options.canvasScrollPosition.horizontal === 'right') {
+            thus.$canvas.prop('scrollLeft', bigWidth);
+        }
+
+        // Set the desired "scrollTop" position
+        if (this.options.canvasScrollPosition.vertical === 'top') {
+            thus.$canvas.prop('scrollTop', 0);
+        } else if (this.options.canvasScrollPosition.vertical === 'center') {
+            thus.$canvas.prop('scrollTop', Math.max(0, Math.min(bigHeight - smallHeight,
+                bigHeight * topRatio - smallHeight / 2)));
+        } else if (this.options.canvasScrollPosition.vertical === 'bottom') {
+            thus.$canvas.prop('scrollTop', bigHeight);
+        }
 
         thus.$element.trigger('magnifik:open');
     };
